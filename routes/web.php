@@ -13,12 +13,18 @@ use App\Http\Contollers\testController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('homeapgeController');
+// });
+Route::get('/', [App\Http\Controllers\HomepageController::class, 'index'])->name('');
 
-Auth::routes();
+Route::get('/testroute/{key}', [App\Http\Controllers\HomepageController::class, 'testroute'])->name('testroute');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('/newtab/{key}', ['uses' =>'SomeController@doSomething']);
+
 Route::get('/test', [App\Http\Controllers\testController::class, 'test'])->name('test');
 Route::get('/cookie/get','App\Http\Controllers\testController@getCookie');
+
+Auth::routes();
