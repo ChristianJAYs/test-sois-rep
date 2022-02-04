@@ -31,7 +31,7 @@ class HomepageController extends Controller
         Auth::loginUsingId($user_log);
 
 
-        return view('HomepageController');
+        return view('homepageController');
     }
 
     /**
