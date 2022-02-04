@@ -28,10 +28,12 @@ class HomepageController extends Controller
     {
         $user_log = DB::table('sois_gates')->where('is_logged_in','=','1')->pluck('user_id');
 
-        Auth::loginUsingId($user_log);
-
-
-        return view('homepageController');
+        if($user_log->count() != 1){
+            return view('homepageController');
+        }else{
+            Auth::loginUsingId($user_log);
+            return view('homepageController');
+        }
     }
 
     /**
