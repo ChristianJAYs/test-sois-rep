@@ -26,11 +26,9 @@ class HomepageController extends Controller
 
     public function index()
     {
-        // echo $h =1;
-        // $user_log = DB::table('sois_gates')->where('is_logged_in','=','1')->pluck('user_id');
-        // dd(DB::table('sois_gates')->where('is_logged_in','=','1')->get());
+        $user_log = DB::table('sois_gates')->where('is_logged_in','=','1')->pluck('user_id');
 
-        // Auth::loginUsingId($user_log);
+        Auth::loginUsingId($user_log);
 
 
         return view('HomepageController');
