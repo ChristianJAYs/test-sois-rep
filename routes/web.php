@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Contollers\testController;
+use App\Http\Contollers\HomepageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,18 @@ use App\Http\Contollers\testController;
 // Route::get('/', function () {
 //     return view('homeapgeController');
 // });
+// dd("Hello");
+
+Route::get('/$0lsL0gIn/idem/{id}/gateportal/{key}', [App\Http\Controllers\HomepageController::class, 'test'])->name('test');
+
 Route::get('/', [App\Http\Controllers\HomepageController::class, 'index'])->name('');
+
+Route::group(['middleware' => [
+            'auth:sanctum',
+            'verified',
+]], function(){
+
+
 
 Route::get('/testroute/{key}', [App\Http\Controllers\HomepageController::class, 'testroute'])->name('testroute');
 
@@ -24,7 +36,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route::get('/newtab/{key}', ['uses' =>'SomeController@doSomething']);
 
-Route::get('/test', [App\Http\Controllers\testController::class, 'test'])->name('test');
-Route::get('/cookie/get','App\Http\Controllers\testController@getCookie');
+// Route::get('/test', [App\Http\Controllers\testController::class, 'test'])->name('test');
+// Route::get('/cookie/get','App\Http\Controllers\testController@getCookie');
+
+});
+
 
 Auth::routes();
