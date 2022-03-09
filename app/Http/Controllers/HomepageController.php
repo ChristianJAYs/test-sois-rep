@@ -33,69 +33,37 @@ class HomepageController extends Controller
 
     public function test($id,$key)
     {
-        // echo $key;
-        // echo "<br><br><br>";
-        // echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        // echo "<br><br><br>";
         $string = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        // echo gettype($string);
-        // echo "<br><br><br>";
         $str_arr = explode ("/", $string); 
-        // print_r($str_arr);
-        // echo "<br><br><br>";
 
         $userID = $str_arr[5];
         $key = $str_arr[7];
-
-        // print_r($str_arr[5]);
-        // echo "<br><br><br>";
-        // print_r($userID);
-        // echo "<br><br><br>";
-        // print_r($str_arr[7]);
-        // echo "<br><br><br>";
-        // print_r($key);
-        // echo "<br><br><br>";
-        // echo $str_arr;
 
         $s = 1;
 
         $userData = DB::table('sois_gates')->where('user_id','=',$userID)->where('gate_key','=',$key)->where('is_logged_in','=','1')->first();
         $userData2 = DB::table('sois_gates')->where('user_id','=',$userID)->where('gate_key','=',$key)->where('is_logged_in','=','1')->get();
-        // echo $userData;
-        // echo "<br><br><br>";
 
         $userDataCount = count($userData2);
-        // echo $userDataCount;
-        // echo "<br><br><br>";
 
         if ($userDataCount == 1) {
-            // print_r("This: ");
-            // print_r($userData->user_id);
             $KeyID = $userData->user_id;
-            // dd($this->userData->user_id)
             Auth::loginUsingId($KeyID);
             return redirect('/home');
-            // echo "<br><br><br>";
-            // echo "Same";
         }else{
-            // echo "Not same";
             return redirect("/");
         }
         
         $selected_key = DB::table('sois_gates')->get();
-        // echo "<br><br><br>";
-        // echo $selected_key;
-
-        // dd($userData);
-
-
-
-
-
 
 
 
         // dd('echo');
+    }
+
+    public function reroute()
+    {
+        dd("Hello");
     }
 
     public function index()

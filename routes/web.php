@@ -21,6 +21,8 @@ use App\Http\Contollers\HomepageController;
 
 Route::get('/$0lsL0gIn/idem/{id}/gateportal/{key}', [App\Http\Controllers\HomepageController::class, 'test'])->name('test');
 
+Route::get('/reroute-test', [App\Http\Controllers\HomepageController::class, 'reroute'])->name('reroute-test');
+
 Route::get('/', [App\Http\Controllers\HomepageController::class, 'index'])->name('');
 
 Route::group(['middleware' => [
