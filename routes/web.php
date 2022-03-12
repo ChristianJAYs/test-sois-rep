@@ -19,7 +19,7 @@ use App\Http\Contollers\HomepageController;
 // });
 // dd("Hello");
 
-Route::get('/$0lsL0gIn/idem/{id}/gateportal/{key}', [App\Http\Controllers\HomepageController::class, 'test'])->name('test');
+Route::get('/$0lsL0gIn/idem/{id}/gateportal/{key1}/{key2}/{routeClass}', [App\Http\Controllers\HomepageController::class, 'test'])->name('test');
 
 Route::get('/reroute-test', [App\Http\Controllers\HomepageController::class, 'reroute'])->name('reroute-test');
 
@@ -30,7 +30,7 @@ Route::group(['middleware' => [
             'verified',
 ]], function(){
 
-
+Route::get('/reroute-test', [App\Http\Controllers\HomepageController::class, 'reroute'])->name('reroute-test');
 
 Route::get('/testroute/{key}', [App\Http\Controllers\HomepageController::class, 'testroute'])->name('testroute');
 
