@@ -53,17 +53,23 @@ class HomepageController extends Controller
 
         $userID = $str_arr[5];
         $key = $str_arr[7];
-        $key2 = $str_arr[8];
-        $testReRoute = $str_arr[9];
-        $key_Final = $str_arr[7]."/".$str_arr[8];
+        // $key2 = $str_arr[8];
+        // $testReRoute = $str_arr[9];
+        // $key_Final = $str_arr[7]."/".$str_arr[8];
+
+        echo $key;        
+
+
+
+
         // dd($str_arr);
         // dd($key);
         // dd(DB::table('sois_gates')->where('user_id','=',$userID)->where('is_logged_in','=','1')->first());
         $gate_keyHolder = DB::table('sois_gates')->where('user_id','=',$userID)->where('is_logged_in','=','1')->pluck('gate_key');
-        $gate_key = serialize($gate_keyHolder) ;
-        // dd($gate_key);
+        $gate_key = serialize($gate_keyHolder);
         // dd($key_Final);
-        $gate_key = (string) $gate_keyHolder;
+        // $gate_key = (string) $gate_keyHolder;
+        dd($gate_key);
         $gate_keyRemove_Start = str_replace("[\"", '', $gate_key);
         $gate_keyRemove_End = str_replace("\"]", '', $gate_keyRemove_Start);
         // dd($gate_keyRemove_End);
@@ -85,23 +91,24 @@ class HomepageController extends Controller
                 $KeyID = $userData->user_id;
                 Auth::loginUsingId($KeyID);
                 if($testReRoute == 'home'){
-                    return redirect('/home');
+                    // return redirect('/home');
                 }
                 if($testReRoute == 'reroute-test'){
                     // $this->reroute = $testReRoute;
                     // dd($this->reroute);
                     // $this->testroute($this->reroute)
-                    return redirect('/reroute-test');
+                    // return redirect('/reroute-test');
                 }
                 // dd($testReRoute);
                 // return redirect('/home');
             }else{
-                return redirect("/");
+                // return redirect("/");
             }
             $selected_key = DB::table('sois_gates')->get();
         }else{
             echo "not Exist";
         }
+        dd($str_arr);
 
         // dd($key_Final);
 
